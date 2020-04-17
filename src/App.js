@@ -11,20 +11,7 @@ import { VisibilityFilters } from './redux/actionTypes';
 import { createStore } from 'redux';
 import todoAppReducer from './redux/todoReducer';
 let store = createStore(todoAppReducer);
-
-console.log(store.getState())
-const unsubscribe = store.subscribe(() => console.log(store.getState()))
-
-// Отправим несколько экшенов
-store.dispatch(addTodo('Learn about actions'))
-store.dispatch(addTodo('Learn about reducers'))
-store.dispatch(addTodo('Learn about store'))
-store.dispatch(toggleTodo(0))
-store.dispatch(toggleTodo(1))
-store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
-
-// Прекратим слушать обновление состояния
-unsubscribe()
+store.subscribe(() => console.log(store.getState()))
 
 function App() {
   const [inputValue, setInputValue] = useState();

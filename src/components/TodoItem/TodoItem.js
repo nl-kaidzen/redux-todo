@@ -1,12 +1,16 @@
 import React from 'react';
 
-const TodoItem = (props) => {
+const TodoItem = ({ text, completed, onClick }) => {
   return (
     <li 
       className="todo-item"
-      key={props.key}
     >
-      
+      <span 
+        className={completed ? "todo-checkbox completed" : "todo-checkbox"} 
+        onClick={onClick}
+      />
+      <p className="todo-text">{text}</p>
+      <button>X</button>
     </li>
   );
 }

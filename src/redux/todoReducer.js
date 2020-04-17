@@ -42,7 +42,7 @@ const todos = (state = [], action) => {
   };
 }
 
-const todoAppReducer = combineReducers({
+export const todoAppReducer = combineReducers({
   visibilityFilter,
   todos,
 });
