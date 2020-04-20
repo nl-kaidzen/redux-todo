@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const TodoItem = ({ text, completed, onClick }) => {
+const TodoItem = ({ text, completed, onClick, onRemove }) => {
   return (
     <li 
       className="todo-item"
@@ -9,10 +10,20 @@ const TodoItem = ({ text, completed, onClick }) => {
         className={completed ? "todo-checkbox completed" : "todo-checkbox"} 
         onClick={onClick}
       />
-      <p className="todo-text">{text}</p>
-      <button>X</button>
+      <p className={completed ? "todo-text completed" : "todo-text"}>{text}</p>
+      <button 
+        className="todo-close-btn"
+        onClick={onRemove}
+      >X</button>
     </li>
   );
+}
+
+TodoItem.propTypes = {
+  text: PropTypes.string.isRequired,
+  completed: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
 }
 
 export default TodoItem;

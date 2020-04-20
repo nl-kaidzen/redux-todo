@@ -1,32 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import AddInput from './components/AddInput/AddInput';
-import TodoList from './components/TodoList/TodoList';
-import {
-  addTodo,
-  toggleTodo,
-  setVisibilityFilter,
-} from './redux/actionCreators';
-import { VisibilityFilters } from './redux/actionTypes';
+import AddTodoContainer from './components/AddTodoContainer/index';
+import VisibleTodoList from './components/VisibleTodoList/index';
+import FilterPanel from './components/FilterPanel/FilterPanel'
+
 import { createStore } from 'redux';
 import todoAppReducer from './redux/todoReducer';
 let store = createStore(todoAppReducer);
 store.subscribe(() => console.log(store.getState()))
 
 function App() {
-  const [inputValue, setInputValue] = useState();
-  const handleChange = (event) => {
-    const value = event.target.value;
-    setInputValue(value);
-  }
   return (
     <div className="app-wrapper">
       <h1 className="header">todos</h1>
-      <AddInput 
-        value={inputValue}
-        handleChange={handleChange}
+      <AddTodoContainer />
+      <FilterPanel 
+        className="filter-panel"
       />
-      <TodoList />
+      <VisibleTodoList />
     </div>
   );
 }
